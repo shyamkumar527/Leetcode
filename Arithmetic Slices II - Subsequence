@@ -1,0 +1,28 @@
+//446. Arithmetic Slices II - Subsequence
+int numberOfArithmeticSlices(vector<int>& nums) {
+        int n=nums.size();
+        long long int ans=0,x,f,a,b;
+        vector<map<long long int,long long int>> v;
+        map<long long int,long long int> mp;
+        v.push_back(mp);
+        for(int i=1;i<n;i++){
+            v.push_back(mp);
+            for(int j=0;j<i;j++){
+                f=1;
+                a=nums[i];
+                b=nums[j];
+                x=a-b;
+                if(v[j][x]>0) f+=v[j][x];
+                v[i][x]+=f;
+            }
+        }
+        for(int i=1;i<n;i++){
+            for(int j=0;j<i;j++){
+                a=nums[i];
+                b=nums[j];
+                x=a-b;
+                ans+=v[j][x];
+            }
+        }
+        return ans;
+}
