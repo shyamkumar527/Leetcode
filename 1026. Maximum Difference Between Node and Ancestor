@@ -1,0 +1,15 @@
+int ans;
+    void vsk(TreeNode* root,int mini,int maxi){
+        if(root==NULL) return;
+        if(root->val<mini) mini=root->val;
+        if(root->val>maxi) maxi=root->val;
+        ans=max(ans,maxi-mini);
+        vsk(root->left,mini,maxi);
+        vsk(root->right,mini,maxi);
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        ans=0;
+        int mini=root->val,maxi=root->val;
+        vsk(root,mini,maxi);
+        return ans;
+    }
