@@ -1,0 +1,28 @@
+//POTD 16-1-24
+set<int> s;
+RandomizedSet(){
+    
+}
+
+bool insert(int val) {
+    auto pos=s.find(val);
+    if(pos==s.end()){
+        s.insert(val);
+        return true;
+    }
+    return false;
+}
+
+bool remove(int val) {
+    auto pos=s.find(val);
+    if(pos==s.end()) return false;
+    s.erase(pos);
+    return true;
+}
+
+int getRandom() {
+    auto it=s.begin();
+    int ans= rand() % s.size();
+    advance(it,ans);
+    return *it;
+}
